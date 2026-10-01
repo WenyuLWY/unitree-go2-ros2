@@ -42,7 +42,7 @@ def generate_launch_description():
         description="Use simulation (Gazebo) clock if true",
     )
     declare_rviz = DeclareLaunchArgument(
-        "rviz", default_value="false", description="Launch rviz"
+        "rviz", default_value="true", description="Launch rviz"
     )
     declare_robot_name = DeclareLaunchArgument(
         "robot_name", default_value="go2", description="Robot name"
@@ -58,9 +58,8 @@ def generate_launch_description():
     declare_gazebo_world = DeclareLaunchArgument(
         "world", default_value=default_world_path, description="Gazebo world name"
     )
-
-    declare_gui = DeclareLaunchArgument(
-        "gui", default_value="true", description="Use gui"
+    declare_headless = DeclareLaunchArgument(
+        "headless", default_value="True", description="Use headless mode"
     )
     declare_world_init_x = DeclareLaunchArgument("world_init_x", default_value="0.0")
     declare_world_init_y = DeclareLaunchArgument("world_init_y", default_value="0.0")
@@ -112,7 +111,7 @@ def generate_launch_description():
             "world_init_y": LaunchConfiguration("world_init_y"),
             "world_init_z": LaunchConfiguration("world_init_z"),
             "world_init_heading": LaunchConfiguration("world_init_heading"),
-            "gui": LaunchConfiguration("gui"),
+            "headless": LaunchConfiguration("headless"),
             "close_loop_odom": "true",
         }.items(),
     )
@@ -125,7 +124,7 @@ def generate_launch_description():
             declare_lite,
             declare_ros_control_file,
             declare_gazebo_world,
-            declare_gui,
+            declare_headless,
             declare_world_init_x,
             declare_world_init_y,
             declare_world_init_z,
